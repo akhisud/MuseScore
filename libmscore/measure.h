@@ -152,7 +152,7 @@ class Measure : public MeasureBase {
       int _mmRestCount;       // > 0 if this is a multi measure rest
                               // 0 if this is the start of a mm rest (_mmRest != 0)
                               // < 0 if this measure is covered by a mm rest
-
+      bool _mmrestOn = false;
       void push_back(Segment* e);
       void push_front(Segment* e);
       void layoutCR0(ChordRest* cr, qreal m, AccidentalState*);
@@ -326,6 +326,8 @@ class Measure : public MeasureBase {
       Element* nextElementStaff(int staff);
       Element* prevElementStaff(int staff);
       virtual QString accessibleInfo() override;
+      bool mmrestOn() const         { return _mmrestOn; }
+      void setMmRestState(bool val) { _mmrestOn = val; }
       };
 
 }     // namespace Ms

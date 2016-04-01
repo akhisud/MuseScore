@@ -1487,7 +1487,7 @@ void Score::writeSegments(Xml& xml, int strack, int etrack,
                         cr->writeBeam(xml);
                         cr->writeTuplet(xml);
                         }
-                  if ((segment->segmentType() == Segment::Type::EndBarLine) && (m->mmRestCount() < 0 || m->mmRest())) {
+                  if ((segment->segmentType() == Segment::Type::EndBarLine) && (m->mmRestCount() < 0 || m->mmRest()) && m->mmrestOn()) {
                         BarLine* bl = static_cast<BarLine*>(e);
                         bl->setBarLineType(m->endBarLineType());
                         bl->setVisible(m->endBarLineVisible());
