@@ -1389,6 +1389,11 @@ bool BarLine::setProperty(P_ID id, const QVariant& v)
             default:
                   return Element::setProperty(id, v);
             }
+      if(isEditable()) {
+            Segment* parentSegment = static_cast<Segment*>(parent());
+            Measure* parentMeasure = parentSegment->measure();
+            parentMeasure->setEndBarLineType(_barLineType, false, _visible, _color);
+            }
       score()->setLayoutAll(true);
       return true;
       }
