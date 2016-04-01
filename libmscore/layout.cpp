@@ -1465,11 +1465,6 @@ void Score::doLayout()
       if (styleB(StyleIdx::createMultiMeasureRests))
             createMMRests();
 
-      else {
-            for (Measure* m = firstMeasure(); m; m = m->nextMeasure()) {
-                        m->setMmRestState(false);
-                  }
-            }
       layoutStage2();   // beam notes, finally decide if chord is up/down
       layoutStage3();   // compute note head horizontal positions
 
@@ -1873,9 +1868,9 @@ void Score::createMMRests()
       //
       //  create mm rest measures
       //
-      for (Measure* m = firstMeasure(); m; m = m->nextMeasure()) {
-                              m->setMmRestState(true);
-                        }
+//      for (Measure* m = firstMeasure(); m; m = m->nextMeasure()) {
+//                              m->setMmRestState(true);
+//                        }
 
 
       for (Measure* m = firstMeasure(); m; m = m->nextMeasure()) {
@@ -1884,7 +1879,7 @@ void Score::createMMRests()
             int n = 0;
             Fraction len;
             while (validMMRestMeasure(nm)) {
-                  m->setMmRestState(true);
+                  //m->setMmRestState(true);
                   m->setMMRestCount(0);
                   MeasureBase* mb = _showVBox ? nm->next() : nm->nextMeasure();
                   if (breakMultiMeasureRest(nm) && n)

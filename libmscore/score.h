@@ -418,6 +418,7 @@ class Score : public QObject, public ScoreElement {
       qreal _noteHeadWidth;
       QString accInfo;             ///< information used by the screen-reader
       int _midiPortCount;          // A count of JACK/ALSA midi out ports. Stored in a root score
+      bool mmRestOn = false;
 
       //------------------
 
@@ -1114,7 +1115,8 @@ class Score : public QObject, public ScoreElement {
       bool checkClefs();
 
       void switchToPageMode();
-
+      void setMmRestOn(bool val)       { mmRestOn = val; }
+      bool getMmRestState()                 { return mmRestOn; }
       virtual QVariant getProperty(P_ID) const override;
       virtual bool setProperty(P_ID, const QVariant&) override;
       virtual QVariant propertyDefault(P_ID) const override;
