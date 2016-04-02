@@ -830,7 +830,7 @@ MuseScore::MuseScore()
       menuView->addAction(getAction("show-frames"));
       menuView->addAction(getAction("show-pageborders"));
       menuView->addSeparator();
-      
+
 #ifndef Q_OS_MAC
       a = getAction("fullscreen");
       a->setCheckable(true);
@@ -1842,10 +1842,10 @@ void MuseScore::midiNoteReceived(int channel, int pitch, int velo)
             ++active;
             }
       else {
-      		/*
-		* Since a note may be assigned to a midi_remote, don't decrease active below zero
-		* on noteoff.
-		*/
+            /*
+      * Since a note may be assigned to a midi_remote, don't decrease active below zero
+      * on noteoff.
+      */
 
             if ((channel != 0x09) && (active > 0))
                   --active;
@@ -3987,6 +3987,14 @@ void MuseScore::cmd(QAction* a)
             qDebug("no score");
             return;
             }
+
+      if (cmdn == "toggle-mmrest") {
+            if(cs->getMmRestState())
+                  cs->setMmRestOn(false);
+            else
+                  cs->setMmRestOn(true);
+            }
+
       if (sc->isCmd()) {
             if (!cv->editMode())
                   cs->startCmd();
